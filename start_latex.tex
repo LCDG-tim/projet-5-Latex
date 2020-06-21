@@ -1,6 +1,9 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{minted}
 
 \title{Projet 5}
 \author{LEBOBE timothé}
@@ -27,7 +30,7 @@
         \newpage
 
     \section{La suite de Fibonacci}
-        La suite de Fibonacci est exposée dans le livre liber Abaci publié en 1202. La suite est montrée comme l'évolution
+        La suite de Fibonacci est exposée dans le livre \textit{liber Abaci} publié en 1202. La suite est montrée comme l'évolution
         d'une population de lapin au cours des mois selon certaines conditions:
         \begin{itemize}
             \item les deux lapins mis dans l'enclos le premier mois sont deux laperaux;
@@ -39,8 +42,139 @@
         \begin{center}
             \includegraphics{images/Fibonacci_lapins.png}
         \end{center}
-        Dans ce cas, $F_0 = 0; F_1 = 1; F_2 = 1 ;\dots$
+        Dans ce cas, $F_0 = 0; F_1 = 1; F_2 = 1 ;\dots$ \\
+        La suite de Fibonacci étant définie par $F_0 = 0; F_1 = 1; F_{n+2} = F_{N+1} + F_n $
+        , elle commence par $0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55$
 
         \newpage
+
+    \section{Exercie 1: niveau 1}
+        \subsection{Enoncé}
+            Joseph Marchand prépare ses vacances à la montagne. Comme tous les ans, il va skier. Mais comme tous
+            les ans, il doit d’abord vérifier que ses skis sont encore à sa taille.
+            D’expérience, il sait qu’il peut porter ses skis même s’il y a quelques tailles de différence avec ses pieds
+            (ce qui n’est pas très prudent pour ses chevilles).
+            Il vous donne la taille de ses pieds et la taille de ses skis. Pouvez-vous lui donner l’écart entre les deux
+            tailles ?
+        \subsection{Entrée}
+            L’entrée contiendra deux entiers : la taille A des pieds sur la première ligne et la taille B
+            des skis sur la seconde.
+        \subsection{Sortie}
+            Vous afficherez un entier, l’écart constaté entre les deux tailles.
+        \subsection{Contraintes}
+            \begin{itemize}
+                \item $0 <= A <= 10^6$
+                \item $0 <= B <= 10^6$
+            \end{itemize}
+        \subsection{Code}
+            \begin{minted}{python}
+
+import re
+
+
+def diff_taille(a: int, b: int) -> int:
+    """function which return the difference between a and b
+    ----
+    :pre:
+        - a is an int and 0 <= a <= 10 ** 6
+        - b is an int and 0 <= b <= 10 ** 6
+    :post:
+        - return_value is an int
+    """
+
+    # Assertions pre
+    assert isinstance(a, int), \
+        "a must be a int, not {}".format(type(a))
+    assert 0 <= a <= 10 ** 6, \
+        "a must be include between 0 and 10 ** 6, not {}".format(a)
+    assert isinstance(b, int), \
+        "b must be a int, not {}".format(type(b))
+    assert 0 <= b <= 10 ** 6, \
+        "b must be include between 0 and 10 ** 6, not {}".format(b)
+
+    # calcul de l'écart
+    return_value = (a - b, b - (a + 1))[a < b]
+
+    # Assertion post
+    assert isinstance(return_value, int), \
+        "return_value must be a int, not {}".format(type(return_value))
+
+    return return_value
+
+
+# Entrée / inputs
+A = input()
+while not(re.findall(r"\d+", A)) and 0 <= A <= 10 ** 6:
+    A = input()
+A = int(A)
+
+B = input()
+while not (re.findall(r"\d+", B)) and 0 <= B <= 10 ** 6:
+    B = input()
+B = int(B)
+
+# Affichage du résultat
+print(diff_taille(A, B))
+            \end{minted}
+        \newpage
+
+    \section{Exercice 2: niveau 2}
+        \subsection{Enoncé}
+            Dans son magasin, Joseph Marchand a loué presque tous ses skis, et certaines tailles sont manquantes.
+            Cependant, il essaie de répondre aux attentes de chaque nouveau client.
+            Lorsqu’un client entre dans le magasin, Joseph lui demande sa taille et parcourt ensuite les paires de skis
+            qu’il a à sa disposition pour trouver celle qui correspondrait le mieux. Vous pouvez aider Joseph !
+            Ce dernier vous donne la taille d’une paire de skis désirée par un client (notée A ), le nombre de skis qu’il
+            a en réserve (noté N), et une liste de la taille de chacun de ces N skis. En échange vous lui donnez la taille
+            de la paire de skis de son stock la plus proche de la taille de la paire de skis qui correspond à son client. Si
+            plusieurs paires sont à égalité, vous donnerez la plus petite de celles-ci pour économiser du bois ! Il vous en
+            sera très reconnaissant.
+
+        \subsection{Entrée}
+            L’entrée contiendra trois lignes. La première donnera le nombre de paires de skis en réserve N, la deuxième
+            la taille de paire de skis désirée par le client A, et la troisième listera les tailles des paires de skis en stock Si.
+        
+        \subsection{Sortie}
+            Vous afficherez un entier, la taille des skis que la personne devra choisir.
+        
+        \subsection{Contraintes}
+            \begin{itemize}
+                \item $1 <= N <= 10 ** 5$
+                \item $0 <= A <= 10 ** 9$
+                \item $0 <= S_i <= 10 ** 9$
+            \end{itemize}
+
+        \subsection{Code}
+            \begin{minted}{python}
+
+import re
+
+
+def client_ski(n: int, a: int, s_i: list) -> int:
+    """fonction qui retourne la taille de ski la plus proche de celle que demande le client, en cas d'égalité d'écart, \
+    la plus petite est choisie
+    ----
+    :pre:
+        - n est un int appartenant à [0; 10 ** 5]
+        - a est un int appartenant à [0; 10 ** 9]
+        - s_i est une list de N élements qui appartiennent à [0; 10 ** 9]
+    :post:
+        - return_value est un int
+    """
+
+    # Assertions pre
+    assert isinstance(n, int), "n must be a int, not {}".format(type(n))
+    assert 0 <= n <= 10 ** 5, "n must be in [0, 10 ** 5], not {}".format(n)
+    assert isinstance(a, int), "a must be a int, not {}".format(type(a))
+    assert 0 <= a <= 10 ** 9, "a must be in [0, 10 ** 9], not {}".format(a)
+    assert isinstance(s_i, list), "s_i must be a list, not {}".format(type(s_i))
+    assert len(s_i) == n, "list s_i contain not n element, {} instead of {}".format(len(s_i), n)
+    for i,j in enumerate(s_i):
+        assert isinstance(j, int), "element {} of s_i must be a int, not {}".format(i, type(j))
+        assert 0 <= j <= 10 ** 9, "l'élement {} of s_i must be in [0, 10 ** 9], not {}".format(i, j)
+
+    
+
+            \end{minted}
 
 \end{document}

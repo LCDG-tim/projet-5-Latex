@@ -192,18 +192,19 @@ def client_ski(n: int, a: int, s_i: list) -> int:
     return return_value
 
 N = input()
-while not(re.findall(r"\d+", N)):
+while not(re.findall(r"^\d+$", N)) and 0 <= int(N) <= 10 ** 5:
     N = input()
 N = int(N)
 
 A = input()
-while not(re.findall(r"\d+", A)):
+while not(re.findall(r"^\d+$", A)) and 0 <= int(A) <= 10 ** 9:
     A = input()
 A = int(A)
+
 S_i = input()
-while not(re.findall(" ".join(["\d+"] * N), S_i)):
+while not(re.findall("^" + (" ".join([r"\d+"] * N)) + "$", S_i)):
     S_i = input()
-S_i = S_i.split(" ")
+S_i = S_i = [int(i) for i in S_i.split(" ")]
 
 print(client_ski(N, A, S_i))
 

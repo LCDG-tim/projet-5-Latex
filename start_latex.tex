@@ -104,12 +104,12 @@ def diff_taille(a: int, b: int) -> int:
 
 # Entrée / inputs
 A = input()
-while not(re.findall(r"\d+", A)) and 0 <= A <= 10 ** 6:
+while not(re.findall(r"^\d+$", A)) and 0 <= int(A) <= 10 ** 6:
     A = input()
 A = int(A)
 
 B = input()
-while not (re.findall(r"\d+", B)) and 0 <= B <= 10 ** 6:
+while not (re.findall(r"^\d+$", B)) and 0 <= int(B) <= 10 ** 6:
     B = input()
 B = int(B)
 

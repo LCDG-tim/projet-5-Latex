@@ -173,8 +173,42 @@ def client_ski(n: int, a: int, s_i: list) -> int:
         assert isinstance(j, int), "element {} of s_i must be a int, not {}".format(i, type(j))
         assert 0 <= j <= 10 ** 9, "l'élement {} of s_i must be in [0, 10 ** 9], not {}".format(i, j)
 
-    
+    # le programme initialise les variable par défaut avec la première valeur de la liste
+    diff_min = abs(s_i[0] - a)
+    return_value = s_i[0]
+    # il parcourt la liste, calcule la différence de taille, si la différence est plus petite
+    # que la précédente, il met la nouvelle taile de ski et la nouvelle diférence dans les variables
+    for i in s_i[1:]:
+        dif = abs(i - a)
+        if dif < diff_min:
+            diff_min = dif
+            return_value = i
+        elif dif == diff_min and i < return_value:
+            return_value = i
+
+    # Assertion post
+    assert isinstance(return_value, int), "return_value must be a int, not {}".format(type(return_value))
+
+    return return_value
+
+N = input()
+while not(re.findall(r"\d+", N)):
+    N = input()
+N = int(N)
+
+A = input()
+while not(re.findall(r"\d+", A)):
+    A = input()
+A = int(A)
+S_i = input()
+while not(re.findall(" ".join(["\d+"] * N), S_i)):
+    S_i = input()
+S_i = S_i.split(" ")
+
+print(client_ski(N, A, S_i))
 
             \end{minted}
+        
+    \section{Exercice 3}
 
 \end{document}

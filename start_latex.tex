@@ -265,6 +265,9 @@ def pins_bound(n: int, m: int, s_n: list)-> int:
         assert isinstance(j, str), "element {} of s_n must be a str, not {}".format(i, type(j))
         assert len(j) == len(s_n[0]), \
             "lengh of element {} is not the same of the first element, {} instead of {}".format(i, len(j, len(s_n[0])))
+        assert j.count("o") == s_n[0].count("o"), \
+            "there is not the same number of o between element {} and element 0".format(j)
+
 
     return_value = 0
     s_n = [

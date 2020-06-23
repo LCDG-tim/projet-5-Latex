@@ -4,6 +4,7 @@
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{minted}
+\usepackage[TI]{fontenc}
 
 \title{Projet 5}
 \author{LEBOBE timothé}
@@ -329,6 +330,34 @@ print(pins_bound(N, M, S_n))
             minimal de passe-partout à emporter pour pouvoir ouvrir toutes les serrures. S’il est impossible de toutes les
             ouvrir avec votre ensemble de clés, retournez 0.
         
+        \subsection{Entrée}
+            L'entrée comprendra:
+            \begin{itemize}
+                \item un nombre N, le nombre de passe-partout que vous possédez ;
+                \item sur chacune des N lignes suivantes, deux nombres xi et yi , représentant la force de votre i-ème passepartout ;
+                \item un nombre M, le nombre de serrures que vous comptez cambrioler ;
+                \item sur chacune des M lignes suivantes, deux nombres ai et si, correspondant respectivement à l’ancienneté de la serrure (-1 pour « avant 1990 », 1 pour « 1990 ou après ») et au niveau de sécurité de la i-ème serrure.
+            \end{itemize}
+        
+        \subsection{Sortie}
+            Vous afficherez en sortie :
+            \begin{itemize}
+                \item le nombre minimum de passe-partout à emporter pour mener à bien votre tâche si c’est possible, 0 sinon.
+            \end{itemize}
+
+        \subsection{Contraintes}
+            \begin{itemize}
+                \item $1 <= N <= 1 000$;
+                \item $1 <= M <= 100 000$;
+                \item $1 <= xi, yi, si <= 1 000 000$
+            \end{itemize}
+        
+        \subsection{Code}
+            \begin{minted}{python}
+
+# work in progress ...
+
+            \end{minted}
         \newpage
 
 \end{document}

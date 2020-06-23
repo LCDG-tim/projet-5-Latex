@@ -34,3 +34,13 @@ def pins_bound(n: int, m: int, s_n: list)-> int:
     assert isinstance(return_value, int), "return_value must be a int, not {}".format(type(return_value))
 
     return return_value
+
+def pass_partout(n: int, m: int, s_p_p: list, s_p: list)-> int:
+
+    # Assertion pre
+    assert isinstance(n, int), "n must be a int, not {}".format(type(n))
+    assert 1 <= n <= 10 ** 3, "n must be in [1, 10 ** 3], not {}".format(n)
+    assert isinstance(m, int), "m must be a int, not {}".format(type(m))
+    assert 1 <= m <= 10 ** 5, "m must be in [1, 10 ** 5], not {}".format(m)
+    return_value = 0
+    return return_value

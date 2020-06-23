@@ -461,8 +461,9 @@ M = int(M)
 Portes = []
 for i in range(M):
     porte = input()
-    while not(re.findall(r"^1 \d+$|^-1 \d+$", porte)) and (-1 == porte.split(" ")[0] or 1 == porte.split(" ")[0]) \
-        and 1 <= porte.split(" ")[1] <= 10 ** 6:
+    while not(re.findall(r"^1 \d+$|^-1 \d+$", porte)) \
+        and (-1 == porte.split(" ")[0] or 1 == porte.split(" ")[0]) \
+            and 1 <= porte.split(" ")[1] <= 10 ** 6:
         porte = input()
     Portes.append(porte.split(" "))
 print(pass_partout(N, M, passes_partout, Portes))
